@@ -1,0 +1,31 @@
+version: "3.1"
+networks:
+  app-tier:
+    driver: bridge
+services:
+  server:
+    image: bitnami/node
+    networks:
+      - app-tier
+    command: "sh -c 'npm install && npm run dev'"
+    volumes:
+      - ./server:/app
+    ports:
+      - 5000:5000
+    depends_on:
+      - mysql
+  mysql:
+    image: "bitnami/mysql:latest"
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=password
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=school
+    networks:
+      - app-tier
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db:/bitnami/mysql/data
+volumes:
+  ./db:

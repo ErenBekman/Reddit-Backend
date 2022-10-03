@@ -15,7 +15,7 @@ router.route("/:id").delete(authenticateToken, UserController.deleteUser);
 //FOLLOW USER
 router.route("/:id/follow").patch(authenticateToken, UserController.follow);
 //UNFOLLOW USER
-router.route("/:id/unfollow").patch(authenticateToken, UserController.unfollow);
+// router.route("/:id/unfollow").patch(authenticateToken, UserController.unfollow);
 //RESET PASSWORD
 router.route("/reset-password").post(validate(schemas.resetPasswordValidation), UserController.resetPassword);
 //CHANGE PASSWORD

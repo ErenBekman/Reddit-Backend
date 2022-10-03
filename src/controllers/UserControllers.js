@@ -103,29 +103,29 @@ class User {
     }
   }
 
-  async unfollow(req, res) {
-    try {
-      if (req.body.userId !== req.params.id) {
-        try {
-          const user = await User.findById(req.params.id);
-          const currentUser = await User.findById(req.body.userId);
-          if (user.followers.includes(req.body.userId)) {
-            await user.updateOne({ $pull: { followers: req.body.userId } });
-            await currentUser.updateOne({ $pull: { followings: req.params.id } });
-            res.status(200).json("user has been unfollowed");
-          } else {
-            res.status(403).json("you dont follow this user");
-          }
-        } catch (err) {
-          res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err);
-        }
-      } else {
-        res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err);
-      }
-    } catch (err) {
-      res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err);
-    }
-  }
+  // async unfollow(req, res) {
+  //   try {
+  //     if (req.body.userId !== req.params.id) {
+  //       try {
+  //         const user = await User.findById(req.params.id);
+  //         const currentUser = await User.findById(req.body.userId);
+  //         if (user.followers.includes(req.body.userId)) {
+  //           await user.updateOne({ $pull: { followers: req.body.userId } });
+  //           await currentUser.updateOne({ $pull: { followings: req.params.id } });
+  //           res.status(200).json("user has been unfollowed");
+  //         } else {
+  //           res.status(403).json("you dont follow this user");
+  //         }
+  //       } catch (err) {
+  //         res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err);
+  //       }
+  //     } else {
+  //       res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err);
+  //     }
+  //   } catch (err) {
+  //     res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err);
+  //   }
+  // }
 
   async resetPassword(req, res) {
     // const newPassword = uuid.v4()?.split('-')[1] || `usr-${new Date.getTime()}`

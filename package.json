@@ -4,8 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node src/app.js",
-    "dev": "npx kill-port 3005 && npx nodemon src/app.js",
+    "start": "node ./app.js",
+    "dev": "npx kill-port 3005 && npx nodemon ./app.js",
     "migrate": "node ./bin/migrate.js"
   },
   "keywords": [],
@@ -23,6 +23,7 @@
     "http-status": "^1.5.3",
     "joi": "^17.6.2",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.4",
     "morgan": "^1.10.0",
     "mysql2": "^2.3.3",
     "nodemailer": "^6.8.0",

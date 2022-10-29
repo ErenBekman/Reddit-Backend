@@ -1,7 +1,6 @@
 # Reddit-Clone
 
 ## :rocket: Technologies
-
 - NodeJs
 - Express
 - MYSQL

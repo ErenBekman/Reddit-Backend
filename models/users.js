@@ -11,18 +11,10 @@ module.exports = (sequelize, Sequelize) => {
         as: "post",
         constraints: false,
       });
-
-      this.hasMany(models.vote, {
+      this.hasMany(models.follower, {
         foreignKey: "user_id",
         sourceKey: "id",
-        as: "vote",
-        constraints: false,
-      });
-
-      this.hasMany(models.comment, {
-        foreignKey: "user_id",
-        sourceKey: "id",
-        as: "comment",
+        as: "follower",
         constraints: false,
       });
     }
@@ -61,22 +53,10 @@ module.exports = (sequelize, Sequelize) => {
       // tokens: {
       //   type: DataTypes.STRING,
       // },
-      picture: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
       gender: {
         type: DataTypes.ENUM({
           values: ["f", "m"],
         }),
-      },
-      followers: {
-        type: DataTypes.JSON,
-        defaultValue: [],
-      },
-      followings: {
-        type: DataTypes.JSON,
-        defaultValue: [],
       },
       deletedAt: {
         type: DataTypes.DATE,
@@ -86,6 +66,7 @@ module.exports = (sequelize, Sequelize) => {
       sequelize,
       deletedAt: "deletedAt",
       modelName: "user",
+      underscored: true,
       timestamps: true,
       paranoid: true,
       indexes: [
@@ -98,16 +79,16 @@ module.exports = (sequelize, Sequelize) => {
     }
   );
 
-  User.beforeCreate(async (user) => {
-    user.password = await bcrypt.hash(user.password, 10);
-    return user;
-  });
-  User.beforeUpdate(async (user) => {
-    if (user.password) {
-      user.password = await bcrypt.hash(user.password, 10);
-    }
-    return user;
-  });
+  // User.beforeCreate(async (user) => {
+  //   user.password = await bcrypt.hash(user.password, 10);
+  //   return user;
+  // });
+  // User.beforeUpdate(async (user) => {
+  //   if (user.password) {
+  //     user.password = await bcrypt.hash(user.password, 10);
+  //   }
+  //   return user;
+  // });
 
   return User;
 };

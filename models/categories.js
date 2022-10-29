@@ -3,12 +3,7 @@ module.exports = (sequelize, Sequelize) => {
   const Model = Sequelize.Model;
   const DataTypes = Sequelize.DataTypes;
   class Category extends Model {
-    static associate(models) {
-      this.belongsToMany(models.post, {
-        foreignKey: "categoryId",
-        through: models.CategoryPost,
-      });
-    }
+    static associate(models) {}
   }
   Category.init(
     {
@@ -27,6 +22,7 @@ module.exports = (sequelize, Sequelize) => {
       sequelize,
       modelName: "category",
       timestamps: true,
+      underscored: true,
       paranoid: true,
       indexes: [
         {

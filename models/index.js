@@ -8,7 +8,10 @@ const env = process.env.NODE_ENV || "development";
 const config = require(__dirname + "/../config/index.js")[env];
 const db = {};
 let sequelize;
+
+// if (process.env.NODE_ENV === "production") {
 if (config.use_env_variable) {
+  console.log("ifffff ");
   sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, { host: config.host, dialect: config.dialect });
@@ -24,11 +27,14 @@ fs.readdirSync(__dirname)
   });
 
 db.users = require("./users")(sequelize, Sequelize);
+db.followers = require("./followers")(sequelize, Sequelize);
+db.subs = require("./subs")(sequelize, Sequelize);
 db.posts = require("./posts")(sequelize, Sequelize);
+db.post_votes = require("./post_votes")(sequelize, Sequelize);
 db.comments = require("./comments")(sequelize, Sequelize);
-db.votes = require("./votes")(sequelize, Sequelize);
-db.category = require("./category")(sequelize, Sequelize);
-db.CategoryToPost = require("./category-post")(sequelize, Sequelize);
+db.comment_votes = require("./comment_votes")(sequelize, Sequelize);
+db.category = require("./categories")(sequelize, Sequelize);
+db.subs_categories = require("./subs_categories")(sequelize, Sequelize);
 
 Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {

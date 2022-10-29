@@ -16,18 +16,16 @@ module.exports = (sequelize, Sequelize) => {
         as: "user",
         constraints: false,
       });
-
       this.hasMany(models.comment, {
-        foreignKey: "parent_comment_id",
+        foreignKey: "parent_id",
         sourceKey: "id",
-        as: "comments",
+        as: "comment",
         constraints: false,
       });
-
-      this.hasMany(models.votes, {
-        foreignKey: "vote_id",
+      this.hasMany(models.CommentVote, {
+        foreignKey: "comment_id",
         sourceKey: "id",
-        as: "vote",
+        as: "CommentVote",
         constraints: false,
       });
     }
@@ -48,11 +46,7 @@ module.exports = (sequelize, Sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
-      parent_comment_id: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-      },
-      vote_id: {
+      parent_id: {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
@@ -66,6 +60,7 @@ module.exports = (sequelize, Sequelize) => {
       deletedAt: "deletedAt",
       modelName: "comment",
       timestamps: true,
+      underscored: true,
       paranoid: true,
       indexes: [
         {

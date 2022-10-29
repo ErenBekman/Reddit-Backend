@@ -38,27 +38,3 @@ const configs = {
 
 configs.config = configs[env];
 module.exports = configs;
-
-// {
-//   "development": {
-//     "USER": "root",
-//     "PASSWORD": "root",
-//     "DB": "reddit",
-//     "HOST": "127.0.0.1",
-//     "DIALECT": "mysql"
-//   },
-//   "test": {
-//     "USER": "root",
-//     "PASSWORD": null,
-//     "DB": "database_test",
-//     "HOST": "127.0.0.1",
-//     "DIALECT": "mysql"
-//   },
-//   "production": {
-//     "USER": "root",
-//     "PASSWORD": null,
-//     "DB": "database_production",
-//     "HOST": "127.0.0.1",
-//     "DIALECT": "mysql"
-//   }
-// }

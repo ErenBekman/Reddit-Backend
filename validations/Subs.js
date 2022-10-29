@@ -2,12 +2,14 @@ const Joi = require("joi");
 
 const createValidation = Joi.object({
   name: Joi.string().required().min(2),
-  sub_id: Joi.number().required(),
+  description: Joi.string().required().min(2),
+  picture: Joi.string(),
 });
 
 const updateValidation = Joi.object({
-  name: Joi.string().required().min(2),
-  sub_id: Joi.number(),
+  name: Joi.string().min(2),
+  description: Joi.string().min(2),
+  picture: Joi.string(),
 });
 
 module.exports = {

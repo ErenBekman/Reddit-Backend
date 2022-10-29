@@ -2,23 +2,23 @@
 module.exports = (sequelize, Sequelize) => {
   const Model = Sequelize.Model;
   const DataTypes = Sequelize.DataTypes;
-  class CategoryToPost extends Model {
+  class SubsCategory extends Model {
     static associate(models) {
       this.hasMany(models.category, {
-        foreignKey: "categoryId",
+        foreignKey: "category_id",
         sourceKey: "id",
         as: "category",
         constraints: false,
       });
-      this.hasMany(models.posts, {
-        foreignKey: "postId",
+      this.hasMany(models.subs, {
+        foreignKey: "subs_id",
         sourceKey: "id",
-        as: "post",
+        as: "subs",
         constraints: false,
       });
     }
   }
-  CategoryToPost.init(
+  SubsCategory.init(
     {
       id: {
         allowNull: false,
@@ -26,21 +26,22 @@ module.exports = (sequelize, Sequelize) => {
         primaryKey: true,
         type: DataTypes.BIGINT.UNSIGNED,
       },
-      categoryId: {
+      category_id: {
         type: DataTypes.INTEGER,
       },
-      postId: {
+      subs_id: {
         type: DataTypes.INTEGER,
       },
     },
     {
       sequelize,
-      modelName: "CategoryPost",
+      modelName: "SubsCategory",
       timestamps: true,
+      underscored: true,
       paranoid: true,
       indexes: [],
     }
   );
 
-  return CategoryToPost;
+  return SubsCategory;
 };

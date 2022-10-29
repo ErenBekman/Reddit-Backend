@@ -19,9 +19,9 @@ const configs = {
       android: "http://localhost:3000",
     },
     //   cloudflare: {
-    //     account_id: 'd5205d653810cc0f2389e4afbb6b5736',
-    //     account_hash: 'NB4OkmH0399eQQDu6nR2ZA',
-    //     token: 'Y6vOUa9NjgKf9VbtYiSgfMFpF4TKFqL0j9kSWLHi'
+    //     account_id: '',
+    //     account_hash: '',
+    //     token: ''
     //   },
   },
   production: {
@@ -29,36 +29,12 @@ const configs = {
     dialect: "mysql",
     secret: "Reddit_2022?",
     //   cloudflare: {
-    //     account_id: 'd5205d653810cc0f2389e4afbb6b5736',
-    //     account_hash: 'NB4OkmH0399eQQDu6nR2ZA',
-    //     token: 'Y6vOUa9NjgKf9VbtYiSgfMFpF4TKFqL0j9kSWLHi'
+    //     account_id: '',
+    //     account_hash: '',
+    //     token: ''
     //   },
   },
 };
 
 configs.config = configs[env];
 module.exports = configs;
-
-// {
-//   "development": {
-//     "USER": "root",
-//     "PASSWORD": "root",
-//     "DB": "reddit",
-//     "HOST": "127.0.0.1",
-//     "DIALECT": "mysql"
-//   },
-//   "test": {
-//     "USER": "root",
-//     "PASSWORD": null,
-//     "DB": "database_test",
-//     "HOST": "127.0.0.1",
-//     "DIALECT": "mysql"
-//   },
-//   "production": {
-//     "USER": "root",
-//     "PASSWORD": null,
-//     "DB": "database_production",
-//     "HOST": "127.0.0.1",
-//     "DIALECT": "mysql"
-//   }
-// }
